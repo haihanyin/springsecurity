@@ -1,4 +1,4 @@
-package p.hh.spsec.ud.service;
+package p.hh.spsec.ap.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

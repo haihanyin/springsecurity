@@ -1,4 +1,4 @@
-package p.hh.spsec.ud.security;
+package p.hh.spsec.ap.security;
 
 
 import org.junit.Before;
@@ -12,11 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -28,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SecurityConfigTest {
 
     @Configuration
-    @ComponentScan(basePackages = "p.hh.spsec.ud")
+    @ComponentScan(basePackages = "p.hh.spsec.ap")
     public static class ContextConfig { }
 
     @Autowired
