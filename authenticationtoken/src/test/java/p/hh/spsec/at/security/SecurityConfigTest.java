@@ -16,10 +16,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SecurityConfigTest.ContextConfig.class)
@@ -41,10 +43,19 @@ public class SecurityConfigTest {
     }
 
     @Test
-    public void test() throws Exception {
+    public void testWithCorrectCheatcode() throws Exception {
         mvc.perform(get("/admin?cheatcode=whosyourdaddy"))
                 .andDo(print())
-                .andExpect(authenticated())
+                .andExpect(status().isOk())
+                .andExpect(authenticated());
+    }
+
+    @Test
+    public void testWithWrongCheatcode() throws Exception {
+        mvc.perform(get("/admin?cheatcode=123"))
+                .andDo(print())
+                .andExpect(status().isForbidden())
+                .andExpect(unauthenticated())
         ;
     }
 }

@@ -14,10 +14,11 @@ public class CheatcodeAuthenticationProvider implements AuthenticationProvider {
             // can also return a different authenticated authentication here
             return authentication;
         }
-        return authentication;
+        return null;
     }
 
     public boolean supports(Class<?> authentication) {
         return authentication.equals(CheatcodeToken.class);
     }
+
 }
